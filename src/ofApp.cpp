@@ -392,13 +392,13 @@ void ofApp::processMidi_ControlChange(ofxMidiMessage& message){
     }else{
         //sMidiThruMsg = /*"Midi THRU set to " + LBL_NONE;*/ LOG_NOTHING
     }
-    m.setAddress("/settings/audio/patch/v4 Audio Patch/level/0/0+/live");
+    m.setAddress(oscAddress);
     if(bNormalizeOsc){
         m.addFloatArg(message.value/127.);
-        sOscMsg="OSC Out: "/settings/audio/patch/v4 Audio Patch/level/0/0+/live" + " " + ofToString( message.value/127.0 );
+        sOscMsg="OSC Out: oscAddress + " " + ofToString( message.value/127.0 );
     }else{
         m.addIntArg(message.value);
-        sOscMsg="OSC Out: "/settings/audio/patch/v4 Audio Patch/level/0/0+/live" + " " + ofToString( message.value );
+        sOscMsg="OSC Out: oscAddress + " " + ofToString( message.value );
     }
     oscSender.sendMessage(m);
     

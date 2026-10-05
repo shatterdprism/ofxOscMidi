@@ -41,6 +41,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     string sMidiOutPort;
     string sMidiThruPort;
     string sOscNetwork;
+    string oscAddress;
         
     ofColor colBG;
     ofColor colToggleActive = ofColor(39, 135, 214);
@@ -75,6 +76,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
         ofxDatGuiDropdown* cmbNetwork;
         ofxDatGuiButton* btnClear;
         ofxDatGuiToggle* btnNormalize;
+        ofxDatGuiTextInput* cmbOSCAddr;
         
         ofxMidiMessage midiMessage;
         ofxOscSender oscSender;

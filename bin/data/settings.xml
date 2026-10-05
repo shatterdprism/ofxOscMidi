@@ -6,3 +6,4 @@
 <oscNetwork>127.0.0.1</oscNetwork>
 <oscNormalize>true</oscNormalize>
 <testValue>1223</testValue>
+<oscAddress>/settings/audio/patch/v4 Audio Patch 1/level/0/0/+/live</oscAddress>

@@ -394,7 +394,7 @@ void ofApp::processMidi_ControlChange(ofxMidiMessage& message){
     }
     m.setAddress(oscAddress);
     if(bNormalizeOsc){
-        m.addFloatArg(message.value/127.);
+        m.addFloatArg((message.value/127. * 72) -60);
         sOscMsg="OSC Out: oscAddress + " " + ofToString( message.value/127.0 );
     }else{
         m.addIntArg(message.value);

@@ -28,6 +28,7 @@ void ofApp::setup()
     
     incomingPortOsc = xmlSettings.getValue("incomingPortOsc", 54321);
     outGoingPortOsc    = xmlSettings.getValue("outGoingPortOsc", 12344);
+    oscAddress = xmlSettings.getValue("oscAddress", "")
     
     sMidiInPort = xmlSettings.getValue("midiInPort", "");
     sMidiOutPort = xmlSettings.getValue("midiOutPort", "");
@@ -49,7 +50,7 @@ void ofApp::setup()
     optsMidi_Out.push_back(LBL_NONE);
     optsMidi_Thru.push_back(LBL_NONE);
     //optsMidi_Thru.push_back(LBL_NONE);
-    
+    optsOSCAddr.push_back(LBL_NONE);
 
     vector<string> optsNic;
     optsNic.push_back("127.0.0.1");
@@ -72,6 +73,7 @@ void ofApp::setup()
     cmbMidiOut = gui->addDropdown(LBL_MIDI_PORT_OUT, optsMidi_Out);
     cmbMidiThru = gui->addDropdown(LBL_MIDI_PORT_THRU, optsMidi_Thru);
     cmbNetwork = gui->addDropdown(LBL_NETWORK, optsNic);
+    cmbOSCAddr = gui->addTextInpupt("OSC-Address", optsOSCAddr);
     
     btnNormalize = gui->addToggle(LBL_BTN_NORMALIZE, bNormalizeOsc);
     
@@ -148,6 +150,10 @@ void ofApp::setup()
     // once the gui has been assembled, register callbacks to listen for component specific events
     //gui->onSliderEvent(this, &ofApp::onSliderEvent);
     gui->onDropdownEvent(this, &ofApp::onDropdownEvent);
+
+    gui->onTextInputEvent(this, &ofApp::onTextInputEvent));
+
+    cmbOSCAddr->bind(oscAddress)
     
     btnNormalize->onToggleEvent(this, &ofApp::onToggleEvent);
     btnClear->onButtonEvent(this, &ofApp::onButtonEvent);
@@ -214,6 +220,13 @@ void ofApp::onButtonEvent(ofxDatGuiButtonEvent e){
         logText.clear();
     }
 }
+
+/*
+void ofApp::onTextInputEvent(ofxDatGuiTextInputEvent e)
+{
+    if(e.target == cm
+}
+*/
 
 void ofApp::onToggleEvent(ofxDatGuiToggleEvent e){
     if(e.target->getLabel() == LBL_BTN_NORMALIZE){
